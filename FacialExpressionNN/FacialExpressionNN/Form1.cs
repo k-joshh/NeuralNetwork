@@ -13,9 +13,29 @@ namespace FacialExpressionNN
 {
     public partial class Form1 : Form
     {
+
+        Bitmap loaded;
         public Form1()
         {
             InitializeComponent();
+        }
+
+        private void openFileDialog1_FileOk(object sender, CancelEventArgs e)
+        {
+            loaded = new Bitmap(openFileDialog1.FileName);
+            pictureBox1.Image = loaded;
+        }
+
+
+        // napislitan ning duha accidentally
+        private void button3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label12_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
