@@ -8,8 +8,7 @@ namespace Backprop
 		private INeuron [] ineuron;//approximatelty 3072
 		private HNeuron [] hneuron;// approx 64
 		private ONeuron [] oneuron;//approx 10
-		private const double LRPOUT =0.2;//learning rate for the the ouptput layer
-		private const double LRPIN = 0.15;// learning rate for the input layer
+		private double learningRate =0.2;//learning rate for the the ouptput layer
 		private double [] errorComponent; // approx 10;
 		private double [] errorDerivative;
 		private double [] desiredout;
@@ -122,19 +121,19 @@ namespace Backprop
 			for(int x=0;x<hneuron.Length;x++)//calculates the errors of every neuron in the 2 layer
 				hneuron[x].calculateErr(errorDerivative);
 			for(int x=0;x<hneuron.Length;x++)//change in the weights in the 2 to ouput
-				hneuron[x].setWeight(LRPOUT,errorDerivative);
+				hneuron[x].setWeight(learningRate,errorDerivative);
 			for(int x=0;x<ineuron.Length;x++)//change the weights in the input to 2
 			{
 				for (int y=0;y<hneuron.Length;y++)
 				{
-					ineuron[x].setWeight(y,hneuron[y].getErr(),LRPIN);
+					ineuron[x].setWeight(y,hneuron[y].getErr(),learningRate);
 				
 				}
 			}
 			for (int x=0;x<oneuron.Length;x++)//change in output neuron bias
-				oneuron[x].changeBias(LRPOUT,errorDerivative);
+				oneuron[x].changeBias(learningRate,errorDerivative);
 			for (int x=0;x<hneuron.Length;x++)//change in 2 neuron bias
-				hneuron[x].changeBias(LRPIN);
+				hneuron[x].changeBias(learningRate);
 
 		}
 		public void run()
@@ -209,7 +208,11 @@ namespace Backprop
 					oneuron[x].setBias(Convert.ToDouble(sr.ReadLine()));
 				}
 			}//end of streamreader
-		
 		}
-	}//end of neural net
+
+		public void setLearningRate(double lr)
+        {
+            this.learningRate = lr;
+        }
+    }//end of neural net
 }

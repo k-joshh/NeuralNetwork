@@ -9,7 +9,7 @@ dataset_path = "Dataset\\train"
 emotions = ["angry", "disgust", "fear", "happy", "neutral", "sad","surprise"]; 
 
 # number of images we are going to select for each emotion
-num_images_per_emotion = 150
+num_images_per_emotion = 30
 
 random.seed(42)  # Set a seed for reproducibility
 
@@ -30,14 +30,12 @@ for emotion in emotions:
     
     # add the selected images and their corresponding emotion to the facial_expressions list
     for image in selected_images:
+
         facial_expressions.append({"image": image, "emotion": emotion})
 
 
 # turning the list of selected images per emotions into a pandas dataframe
 facial_expressions_df = pd.DataFrame(facial_expressions)
-
-# scrambled the dataframe to ensure randomness in the order of images
-facial_expressions_df = facial_expressions_df.sample(frac=1).reset_index(drop=True)
 
 # save the dataframe to a csv file
 facial_expressions_df.to_csv("Dataset\\facial_expressions.csv", index=False)

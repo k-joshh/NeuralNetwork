@@ -1,13 +1,3 @@
-C:\Users\Khylle\Documents\BSCS\3rd Year\CS345\NeuralNetwork\FacialExpressionNN\FacialExpressionNN\bin\Debug\FacialExpressionNN.exe.config
-C:\Users\Khylle\Documents\BSCS\3rd Year\CS345\NeuralNetwork\FacialExpressionNN\FacialExpressionNN\bin\Debug\FacialExpressionNN.exe
-C:\Users\Khylle\Documents\BSCS\3rd Year\CS345\NeuralNetwork\FacialExpressionNN\FacialExpressionNN\bin\Debug\FacialExpressionNN.pdb
-C:\Users\Khylle\Documents\BSCS\3rd Year\CS345\NeuralNetwork\FacialExpressionNN\FacialExpressionNN\obj\Debug\FacialExpressionNN.csproj.AssemblyReference.cache
-C:\Users\Khylle\Documents\BSCS\3rd Year\CS345\NeuralNetwork\FacialExpressionNN\FacialExpressionNN\obj\Debug\FacialExpressionNN.Form1.resources
-C:\Users\Khylle\Documents\BSCS\3rd Year\CS345\NeuralNetwork\FacialExpressionNN\FacialExpressionNN\obj\Debug\FacialExpressionNN.Properties.Resources.resources
-C:\Users\Khylle\Documents\BSCS\3rd Year\CS345\NeuralNetwork\FacialExpressionNN\FacialExpressionNN\obj\Debug\FacialExpressionNN.csproj.GenerateResource.cache
-C:\Users\Khylle\Documents\BSCS\3rd Year\CS345\NeuralNetwork\FacialExpressionNN\FacialExpressionNN\obj\Debug\FacialExpressionNN.csproj.CoreCompileInputs.cache
-C:\Users\Khylle\Documents\BSCS\3rd Year\CS345\NeuralNetwork\FacialExpressionNN\FacialExpressionNN\obj\Debug\FacialExpressionNN.exe
-C:\Users\Khylle\Documents\BSCS\3rd Year\CS345\NeuralNetwork\FacialExpressionNN\FacialExpressionNN\obj\Debug\FacialExpressionNN.pdb
 C:\Users\Rheyvene\Documents\NeuralNetwork\FacialExpressionNN\FacialExpressionNN\bin\Debug\FacialExpressionNN.exe.config
 C:\Users\Rheyvene\Documents\NeuralNetwork\FacialExpressionNN\FacialExpressionNN\bin\Debug\FacialExpressionNN.exe
 C:\Users\Rheyvene\Documents\NeuralNetwork\FacialExpressionNN\FacialExpressionNN\bin\Debug\FacialExpressionNN.pdb
@@ -18,3 +8,13 @@ C:\Users\Rheyvene\Documents\NeuralNetwork\FacialExpressionNN\FacialExpressionNN\
 C:\Users\Rheyvene\Documents\NeuralNetwork\FacialExpressionNN\FacialExpressionNN\obj\Debug\FacialExpressionNN.csproj.CoreCompileInputs.cache
 C:\Users\Rheyvene\Documents\NeuralNetwork\FacialExpressionNN\FacialExpressionNN\obj\Debug\FacialExpressionNN.exe
 C:\Users\Rheyvene\Documents\NeuralNetwork\FacialExpressionNN\FacialExpressionNN\obj\Debug\FacialExpressionNN.pdb
+C:\Users\Khylle\Documents\BSCS\3rd Year\CS345\NeuralNetwork\FacialExpressionNN\FacialExpressionNN\bin\Debug\FacialExpressionNN.exe.config
+C:\Users\Khylle\Documents\BSCS\3rd Year\CS345\NeuralNetwork\FacialExpressionNN\FacialExpressionNN\bin\Debug\FacialExpressionNN.exe
+C:\Users\Khylle\Documents\BSCS\3rd Year\CS345\NeuralNetwork\FacialExpressionNN\FacialExpressionNN\bin\Debug\FacialExpressionNN.pdb
+C:\Users\Khylle\Documents\BSCS\3rd Year\CS345\NeuralNetwork\FacialExpressionNN\FacialExpressionNN\obj\Debug\FacialExpressionNN.csproj.AssemblyReference.cache
+C:\Users\Khylle\Documents\BSCS\3rd Year\CS345\NeuralNetwork\FacialExpressionNN\FacialExpressionNN\obj\Debug\FacialExpressionNN.Form1.resources
+C:\Users\Khylle\Documents\BSCS\3rd Year\CS345\NeuralNetwork\FacialExpressionNN\FacialExpressionNN\obj\Debug\FacialExpressionNN.Properties.Resources.resources
+C:\Users\Khylle\Documents\BSCS\3rd Year\CS345\NeuralNetwork\FacialExpressionNN\FacialExpressionNN\obj\Debug\FacialExpressionNN.csproj.GenerateResource.cache
+C:\Users\Khylle\Documents\BSCS\3rd Year\CS345\NeuralNetwork\FacialExpressionNN\FacialExpressionNN\obj\Debug\FacialExpressionNN.csproj.CoreCompileInputs.cache
+C:\Users\Khylle\Documents\BSCS\3rd Year\CS345\NeuralNetwork\FacialExpressionNN\FacialExpressionNN\obj\Debug\FacialExpressionNN.exe
+C:\Users\Khylle\Documents\BSCS\3rd Year\CS345\NeuralNetwork\FacialExpressionNN\FacialExpressionNN\obj\Debug\FacialExpressionNN.pdb
