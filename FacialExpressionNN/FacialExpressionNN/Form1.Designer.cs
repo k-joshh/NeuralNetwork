@@ -36,9 +36,6 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
-            this.EpochsLabel = new System.Windows.Forms.Label();
-            this.HiddenNeuronsLabel = new System.Windows.Forms.Label();
-            this.LearningRateLabel = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
@@ -47,6 +44,9 @@
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.label12 = new System.Windows.Forms.Label();
             this.EmotionLabel = new System.Windows.Forms.Label();
+            this.LRTextBox = new System.Windows.Forms.TextBox();
+            this.HNTextBox = new System.Windows.Forms.TextBox();
+            this.EpochsTextBox = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -132,36 +132,6 @@
             this.label6.TabIndex = 7;
             this.label6.Text = "Epochs";
             // 
-            // EpochsLabel
-            // 
-            this.EpochsLabel.AutoSize = true;
-            this.EpochsLabel.Font = new System.Drawing.Font("Arial", 10.18868F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.EpochsLabel.Location = new System.Drawing.Point(238, 209);
-            this.EpochsLabel.Name = "EpochsLabel";
-            this.EpochsLabel.Size = new System.Drawing.Size(18, 17);
-            this.EpochsLabel.TabIndex = 10;
-            this.EpochsLabel.Text = "--";
-            // 
-            // HiddenNeuronsLabel
-            // 
-            this.HiddenNeuronsLabel.AutoSize = true;
-            this.HiddenNeuronsLabel.Font = new System.Drawing.Font("Arial", 10.18868F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.HiddenNeuronsLabel.Location = new System.Drawing.Point(238, 187);
-            this.HiddenNeuronsLabel.Name = "HiddenNeuronsLabel";
-            this.HiddenNeuronsLabel.Size = new System.Drawing.Size(18, 17);
-            this.HiddenNeuronsLabel.TabIndex = 9;
-            this.HiddenNeuronsLabel.Text = "--";
-            // 
-            // LearningRateLabel
-            // 
-            this.LearningRateLabel.AutoSize = true;
-            this.LearningRateLabel.Font = new System.Drawing.Font("Arial", 10.18868F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LearningRateLabel.Location = new System.Drawing.Point(238, 165);
-            this.LearningRateLabel.Name = "LearningRateLabel";
-            this.LearningRateLabel.Size = new System.Drawing.Size(18, 17);
-            this.LearningRateLabel.TabIndex = 8;
-            this.LearningRateLabel.Text = "--";
-            // 
             // label10
             // 
             this.label10.AutoSize = true;
@@ -197,6 +167,7 @@
             this.pictureBox1.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(300, 300);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 14;
             this.pictureBox1.TabStop = false;
             // 
@@ -236,11 +207,38 @@
             this.EmotionLabel.TabIndex = 17;
             this.EmotionLabel.Text = "---";
             // 
+            // LRTextBox
+            // 
+            this.LRTextBox.Font = new System.Drawing.Font("Arial Narrow", 10.18868F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LRTextBox.Location = new System.Drawing.Point(258, 160);
+            this.LRTextBox.Name = "LRTextBox";
+            this.LRTextBox.Size = new System.Drawing.Size(100, 25);
+            this.LRTextBox.TabIndex = 18;
+            // 
+            // HNTextBox
+            // 
+            this.HNTextBox.Font = new System.Drawing.Font("Arial Narrow", 10.18868F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.HNTextBox.Location = new System.Drawing.Point(258, 182);
+            this.HNTextBox.Name = "HNTextBox";
+            this.HNTextBox.Size = new System.Drawing.Size(100, 25);
+            this.HNTextBox.TabIndex = 19;
+            // 
+            // EpochsTextBox
+            // 
+            this.EpochsTextBox.Font = new System.Drawing.Font("Arial Narrow", 10.18868F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.EpochsTextBox.Location = new System.Drawing.Point(258, 204);
+            this.EpochsTextBox.Name = "EpochsTextBox";
+            this.EpochsTextBox.Size = new System.Drawing.Size(100, 25);
+            this.EpochsTextBox.TabIndex = 20;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(986, 635);
+            this.Controls.Add(this.EpochsTextBox);
+            this.Controls.Add(this.HNTextBox);
+            this.Controls.Add(this.LRTextBox);
             this.Controls.Add(this.EmotionLabel);
             this.Controls.Add(this.label12);
             this.Controls.Add(this.LoadImageButton);
@@ -248,9 +246,6 @@
             this.Controls.Add(this.richTextBox1);
             this.Controls.Add(this.label11);
             this.Controls.Add(this.label10);
-            this.Controls.Add(this.EpochsLabel);
-            this.Controls.Add(this.HiddenNeuronsLabel);
-            this.Controls.Add(this.LearningRateLabel);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
@@ -277,9 +272,6 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label EpochsLabel;
-        private System.Windows.Forms.Label HiddenNeuronsLabel;
-        private System.Windows.Forms.Label LearningRateLabel;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.RichTextBox richTextBox1;
@@ -288,6 +280,9 @@
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label EmotionLabel;
+        private System.Windows.Forms.TextBox LRTextBox;
+        private System.Windows.Forms.TextBox HNTextBox;
+        private System.Windows.Forms.TextBox EpochsTextBox;
     }
 }
 

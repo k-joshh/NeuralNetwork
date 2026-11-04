@@ -211,14 +211,16 @@ namespace FacialExpressionNN
         {
             Loaded = new Bitmap(openFileDialog1.FileName);
             pictureBox1.Image = Loaded;
-
+            
+            int pixelIndex = 0;
             for (int x = 0; x < Loaded.Width; x++)
             {
                 for (int y = 0; y < Loaded.Height; y++)
                 {
                     Color pixel = Loaded.GetPixel(x, y);
-                    int grey = (pixel.R + pixel.G + pixel.B) / 3;
-                    NeuralNet.setInputs(x * Loaded.Height + y, grey / 255.0);
+                    double gray = (pixel.R * 0.3 + pixel.G * 0.59 + pixel.B * 0.11) / 255.0;
+                    NeuralNet.setInputs(pixelIndex, gray);
+                    pixelIndex++;
                 }
             }
             NeuralNet.run();
@@ -249,9 +251,6 @@ namespace FacialExpressionNN
             Random Rand = new Random();
 
             double BestError = double.MaxValue;
-            double OptimalLearningRate = 0;
-            int OptimalNumberOfEpochs = 0;
-            int OptimalNumberOfHiddenLayers = 0;
 
             richTextBox1.Clear();
             richTextBox1.AppendText("Starting Random Search (5 trials)...\n\n");
@@ -278,13 +277,15 @@ namespace FacialExpressionNN
                     {
                         // loop for each pixel
                         Bitmap image = TrainingImages[idx];
-                        for(int x = 0; x < image.Width; x++)
+                        int pixelIndex = 0;
+                        for (int x = 0; x < image.Width; x++)
                         {
                             for(int y = 0; y < image.Height; y++)
                             {
                                 Color pixel = image.GetPixel(x,y);
-                                int grey = (pixel.R + pixel.G + pixel.B) / 3;
-                                NeuralNet.setInputs(x * image.Height + y, grey / 255.0);
+                                double gray = (pixel.R * 0.3 + pixel.G * 0.59 + pixel.B * 0.11) / 255.0;
+                                NeuralNet.setInputs(pixelIndex, gray);
+                                pixelIndex++;
                             }
                         }
                         for (int i = 0; i < 7; i++)
@@ -320,9 +321,9 @@ namespace FacialExpressionNN
             richTextBox1.AppendText("========================================\n");
 
             // output the best values to your corresponding UI labels
-            LearningRateLabel.Text = $"{OptimalLearningRate}";
-            EpochsLabel.Text = $"{OptimalNumberOfEpochs}";
-            HiddenNeuronsLabel.Text = $"{OptimalNumberOfHiddenLayers}";
+            LRTextBox.Text = $"{OptimalLearningRate}";
+            EpochsTextBox.Text = $"{OptimalNumberOfEpochs}";
+            HNTextBox.Text = $"{OptimalNumberOfHiddenLayers}";
         }
 
         private double CalculateError()
@@ -343,9 +344,9 @@ namespace FacialExpressionNN
 
                 // 1. Flatten and load the 48x48 image pixels into the neural net inputs (2,304 inputs)
                 int pixelIndex = 0;
-                for (int y = 0; y < img.Height; y++)
+                for (int x = 0; x < img.Width; x++)
                 {
-                    for (int x = 0; x < img.Width; x++)
+                    for (int y = 0; y < img.Height; y++)
                     {
                         Color pixel = img.GetPixel(x, y);
                         // Convert to grayscale and normalize between 0.0 and 1.0
@@ -402,8 +403,7 @@ namespace FacialExpressionNN
                     for (int y = 0; y < img.Height; y++)
                     {
                         Color pixel = img.GetPixel(x, y);
-                        double gray = (pixel.R + pixel.G  + pixel.B) /3;
-                        
+                        double gray = (pixel.R * 0.3 + pixel.G * 0.59 + pixel.B * 0.11) / 255.0;
                         NeuralNet.setInputs(pixelIndex, gray);
                         pixelIndex++;
                     }
@@ -442,34 +442,58 @@ namespace FacialExpressionNN
             richTextBox1.AppendText("\n---------------------------------\n");
             richTextBox1.AppendText("\nTraining the neural network...\n");
 
-            NeuralNet = new NeuralNet(2304, OptimalNumberOfHiddenLayers, 7);
-            NeuralNet.setLearningRate(OptimalLearningRate);
+            NeuralNet = new NeuralNet(2304, int.Parse(HNTextBox.Text), 7);
+            NeuralNet.setLearningRate(double.Parse(LRTextBox.Text));
 
-            // loop through the optimal number of epochs
-            for(int epoch = 0; epoch < OptimalNumberOfEpochs; epoch++)
+            richTextBox1.AppendText("Starting training\n");
+
+            // Loop through your total epochs (e.g., bestEpochs found by random search)
+            for (int epoch = 1; epoch <= int.Parse(EpochsTextBox.Text); epoch++)
             {
-                // loop through all images in the training dataset
+                // 1. Train on every image in your training set for the current epoch
                 for (int idx = 0; idx < TrainingImages.Length; idx++)
                 {
                     Bitmap image = TrainingImages[idx];
-                    for(int x = 0; x < image.Width; x++)
+                    
+                    // Flatten and load pixel inputs
+                    int pixelIndex = 0;
+                    for (int x = 0; x < image.Width; x++)
                     {
-                        for(int y = 0; y < image.Height; y++)
+                        for (int y = 0; y < image.Height; y++)
                         {
-                            Color pixel = image.GetPixel(x,y);
-                            int grey = (pixel.R + pixel.G + pixel.B) / 3;
-                            NeuralNet.setInputs(x * image.Height + y, grey);
+                            Color pixel = image.GetPixel(x, y);
+                            double gray = (pixel.R * 0.3 + pixel.G * 0.59 + pixel.B * 0.11) / 255.0;
+                            NeuralNet.setInputs(pixelIndex, gray);
+                            pixelIndex++;
                         }
                     }
+
+                    // Set one-hot targets for the 7 emotion classes
                     for (int i = 0; i < 7; i++)
                     {
-                        NeuralNet.setDesiredOutput(i, (TrainingImageEmotion[idx] == i) ? 1.0 : 0.0); // One-hot encoding for desired output
+                        NeuralNet.setDesiredOutput(i, (TrainingImageEmotion[idx] == i) ? 1.0 : 0.0);
                     }
-                    NeuralNet.learn(); // Train the network with the current input and desired output
+
+                    // Execute learning step (forward pass + backpropagation)
+                    NeuralNet.learn();
+                }
+
+                // 2. Print progress every 100 epochs
+                if (epoch % 100 == 0)
+                {
+                    // Optional: Calculate current training accuracy or error to display
+                    double currentAcc = CalculateAccuracyFromArrays(TrainingImages, TrainingImageEmotion);
+                    double estimatedError = 1.0 - currentAcc; // Or compute Mean Squared Error if preferred
+
+                    // Format to match your desired style
+                    richTextBox1.AppendText($"epoch = {epoch,-4}    error = {estimatedError:F4}\n");
+                    
+                    // Ensures the UI doesn't freeze while training runs
+                    Application.DoEvents(); 
                 }
             }
 
-            richTextBox1.AppendText("\nTraining completed successfully.\n");
+            richTextBox1.AppendText("Done\n");
 
             // 3. CALCULATE ACCURACIES DIRECTLY AFTER TRAINING
             double trainAcc = CalculateAccuracyFromArrays(TrainingImages, TrainingImageEmotion);
