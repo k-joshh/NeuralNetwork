@@ -212,6 +212,31 @@ namespace FacialExpressionNN
             Loaded = new Bitmap(openFileDialog1.FileName);
             pictureBox1.Image = Loaded;
 
+            for (int x = 0; x < Loaded.Width; x++)
+            {
+                for (int y = 0; y < Loaded.Height; y++)
+                {
+                    Color pixel = Loaded.GetPixel(x, y);
+                    int grey = (pixel.R + pixel.G + pixel.B) / 3;
+                    NeuralNet.setInputs(x * Loaded.Height + y, grey / 255.0);
+                }
+            }
+            NeuralNet.run();
+
+            int predictedClass = 0;
+            double maxActivation = -1.0;
+            for (int o = 0; o < 7; o++)
+            {
+                double activation = NeuralNet.getOuputData(o);
+                if (activation > maxActivation)
+                {
+                    maxActivation = activation;
+                    predictedClass = o;
+                }
+            }
+
+            string[] emotions = { "Angry", "Disgust", "Fear", "Happy", "Neutral", "Sad", "Surprise" };
+            EmotionLabel.Text = $"{emotions[predictedClass]} ({maxActivation * 100.0:F2})";
         }
 
         private void RandomSearchButton_Click(object sender, EventArgs e)
@@ -385,7 +410,7 @@ namespace FacialExpressionNN
                 }
 
                 // 2. Run the network forward pass to calculate activations
-                sharedNeuralNet.run();
+                NeuralNet.run();
 
                 // 3. Find the predicted class using ArgMax across your 7 output neurons
                 int predictedClass = 0;
@@ -393,7 +418,7 @@ namespace FacialExpressionNN
 
                 for (int o = 0; o < 7; o++)
                 {
-                    double activation = sharedNeuralNet.getOuputData(o);
+                    double activation = NeuralNet.getOuputData(o);
                     if (activation > maxActivation)
                     {
                         maxActivation = activation;

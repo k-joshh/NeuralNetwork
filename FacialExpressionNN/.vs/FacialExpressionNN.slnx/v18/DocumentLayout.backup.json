@@ -3,20 +3,20 @@
   "WorkspaceRootPath": "C:\\Users\\Khylle\\Documents\\BSCS\\3rd Year\\CS345\\NeuralNetwork\\FacialExpressionNN\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{BAAB6B6C-13F9-4E87-B3ED-D1F86B36E23D}|FacialExpressionNN\\FacialExpressionNN.csproj|C:\\Users\\Khylle\\Documents\\BSCS\\3rd Year\\CS345\\NeuralNetwork\\FacialExpressionNN\\facialexpressionnn\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{BAAB6B6C-13F9-4E87-B3ED-D1F86B36E23D}|FacialExpressionNN\\FacialExpressionNN.csproj|c:\\users\\khylle\\documents\\bscs\\3rd year\\cs345\\neuralnetwork\\facialexpressionnn\\facialexpressionnn\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{BAAB6B6C-13F9-4E87-B3ED-D1F86B36E23D}|FacialExpressionNN\\FacialExpressionNN.csproj|solutionrelative:facialexpressionnn\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BAAB6B6C-13F9-4E87-B3ED-D1F86B36E23D}|FacialExpressionNN\\FacialExpressionNN.csproj|C:\\Users\\Khylle\\Documents\\BSCS\\3rd Year\\CS345\\NeuralNetwork\\FacialExpressionNN\\facialexpressionnn\\backneural.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BAAB6B6C-13F9-4E87-B3ED-D1F86B36E23D}|FacialExpressionNN\\FacialExpressionNN.csproj|solutionrelative:facialexpressionnn\\backneural.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BAAB6B6C-13F9-4E87-B3ED-D1F86B36E23D}|FacialExpressionNN\\FacialExpressionNN.csproj|C:\\Users\\Khylle\\Documents\\BSCS\\3rd Year\\CS345\\NeuralNetwork\\FacialExpressionNN\\facialexpressionnn\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{BAAB6B6C-13F9-4E87-B3ED-D1F86B36E23D}|FacialExpressionNN\\FacialExpressionNN.csproj|solutionrelative:facialexpressionnn\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
       "AbsoluteMoniker": "D:0:0:{BAAB6B6C-13F9-4E87-B3ED-D1F86B36E23D}|FacialExpressionNN\\FacialExpressionNN.csproj|C:\\Users\\Khylle\\Documents\\BSCS\\3rd Year\\CS345\\NeuralNetwork\\FacialExpressionNN\\facialexpressionnn\\hiddenn.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{BAAB6B6C-13F9-4E87-B3ED-D1F86B36E23D}|FacialExpressionNN\\FacialExpressionNN.csproj|solutionrelative:facialexpressionnn\\hiddenn.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{BAAB6B6C-13F9-4E87-B3ED-D1F86B36E23D}|FacialExpressionNN\\FacialExpressionNN.csproj|c:\\users\\khylle\\documents\\bscs\\3rd year\\cs345\\neuralnetwork\\facialexpressionnn\\facialexpressionnn\\backneural.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{BAAB6B6C-13F9-4E87-B3ED-D1F86B36E23D}|FacialExpressionNN\\FacialExpressionNN.csproj|solutionrelative:facialexpressionnn\\backneural.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{BAAB6B6C-13F9-4E87-B3ED-D1F86B36E23D}|FacialExpressionNN\\FacialExpressionNN.csproj|c:\\users\\khylle\\documents\\bscs\\3rd year\\cs345\\neuralnetwork\\facialexpressionnn\\facialexpressionnn\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{BAAB6B6C-13F9-4E87-B3ED-D1F86B36E23D}|FacialExpressionNN\\FacialExpressionNN.csproj|solutionrelative:facialexpressionnn\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     }
   ],
   "DocumentGroupContainers": [
@@ -34,12 +34,12 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 2,
               "Title": "Form1.cs [Design]",
               "DocumentMoniker": "C:\\Users\\Khylle\\Documents\\BSCS\\3rd Year\\CS345\\NeuralNetwork\\FacialExpressionNN\\FacialExpressionNN\\Form1.cs",
               "RelativeDocumentMoniker": "FacialExpressionNN\\Form1.cs",
-              "ToolTip": "C:\\Users\\Khylle\\Documents\\BSCS\\3rd Year\\CS345\\NeuralNetwork\\FacialExpressionNN\\FacialExpressionNN\\Form1.cs [Design]*",
-              "RelativeToolTip": "FacialExpressionNN\\Form1.cs [Design]*",
+              "ToolTip": "C:\\Users\\Khylle\\Documents\\BSCS\\3rd Year\\CS345\\NeuralNetwork\\FacialExpressionNN\\FacialExpressionNN\\Form1.cs [Design]",
+              "RelativeToolTip": "FacialExpressionNN\\Form1.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-11-04T02:46:34.663Z",
               "EditorCaption": " [Design]"
@@ -50,16 +50,16 @@
               "Title": "Form1.cs",
               "DocumentMoniker": "C:\\Users\\Khylle\\Documents\\BSCS\\3rd Year\\CS345\\NeuralNetwork\\FacialExpressionNN\\FacialExpressionNN\\Form1.cs",
               "RelativeDocumentMoniker": "FacialExpressionNN\\Form1.cs",
-              "ToolTip": "C:\\Users\\Khylle\\Documents\\BSCS\\3rd Year\\CS345\\NeuralNetwork\\FacialExpressionNN\\FacialExpressionNN\\Form1.cs*",
-              "RelativeToolTip": "FacialExpressionNN\\Form1.cs*",
-              "ViewState": "AgIAABgAAAAAAAAAAAAIwCYAAAAAAAAAAAAAAA==",
+              "ToolTip": "C:\\Users\\Khylle\\Documents\\BSCS\\3rd Year\\CS345\\NeuralNetwork\\FacialExpressionNN\\FacialExpressionNN\\Form1.cs",
+              "RelativeToolTip": "FacialExpressionNN\\Form1.cs",
+              "ViewState": "AgIAANkAAAAAAAAAAAAswO8AAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-11-03T21:46:40.023Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 3,
               "Title": "HiddenN.cs",
               "DocumentMoniker": "C:\\Users\\Khylle\\Documents\\BSCS\\3rd Year\\CS345\\NeuralNetwork\\FacialExpressionNN\\FacialExpressionNN\\HiddenN.cs",
               "RelativeDocumentMoniker": "FacialExpressionNN\\HiddenN.cs",
@@ -67,12 +67,11 @@
               "RelativeToolTip": "FacialExpressionNN\\HiddenN.cs",
               "ViewState": "AgIAADgAAAAAAAAAAAAAwA4AAAADAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-11-03T15:11:20.706Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-11-03T15:11:20.706Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 1,
               "Title": "BackNeural.cs",
               "DocumentMoniker": "C:\\Users\\Khylle\\Documents\\BSCS\\3rd Year\\CS345\\NeuralNetwork\\FacialExpressionNN\\FacialExpressionNN\\BackNeural.cs",
               "RelativeDocumentMoniker": "FacialExpressionNN\\BackNeural.cs",

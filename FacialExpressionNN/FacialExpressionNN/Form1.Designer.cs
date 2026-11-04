@@ -46,7 +46,7 @@
             this.LoadImageButton = new System.Windows.Forms.Button();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.label12 = new System.Windows.Forms.Label();
-            this.label13 = new System.Windows.Forms.Label();
+            this.EmotionLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -226,22 +226,22 @@
             this.label12.TabIndex = 16;
             this.label12.Text = "Emotion Identified:";
             // 
-            // label13
+            // EmotionLabel
             // 
-            this.label13.AutoSize = true;
-            this.label13.Font = new System.Drawing.Font("Arial Rounded MT Bold", 14.26415F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label13.Location = new System.Drawing.Point(734, 508);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(31, 24);
-            this.label13.TabIndex = 17;
-            this.label13.Text = "---";
+            this.EmotionLabel.AutoSize = true;
+            this.EmotionLabel.Font = new System.Drawing.Font("Arial Rounded MT Bold", 14.26415F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.EmotionLabel.Location = new System.Drawing.Point(734, 508);
+            this.EmotionLabel.Name = "EmotionLabel";
+            this.EmotionLabel.Size = new System.Drawing.Size(31, 24);
+            this.EmotionLabel.TabIndex = 17;
+            this.EmotionLabel.Text = "---";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(986, 635);
-            this.Controls.Add(this.label13);
+            this.Controls.Add(this.EmotionLabel);
             this.Controls.Add(this.label12);
             this.Controls.Add(this.LoadImageButton);
             this.Controls.Add(this.pictureBox1);
@@ -287,7 +287,7 @@
         private System.Windows.Forms.Button LoadImageButton;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.Label EmotionLabel;
     }
 }
 
