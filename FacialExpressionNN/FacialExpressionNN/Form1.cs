@@ -20,8 +20,8 @@ namespace FacialExpressionNN
         int[] TrainingImageEmotion;
         Bitmap[] TestingImages;
         int[] TestingImageEmotion;
-        double LearningRate;
-        int NumberOfEpochs, NumberOfHiddenLayers;
+        double OptimalLearningRate;
+        int OptimalNumberOfEpochs, OptimalNumberOfHiddenLayers;
         Bitmap Loaded;
         NeuralNet NeuralNet;
 
@@ -35,7 +35,7 @@ namespace FacialExpressionNN
         private void LoadDatasetFromCsv()
         {
             // When running from Visual Studio (bin\Debug), Dataset is 3 levels up
-            string datasetPath = "C:\\Users\\Khylle\\Documents\\BSCS\\3rd Year\\CS345\\NeuralNetwork\\Dataset";
+            string datasetPath = "C:\\Users\\Rheyvene\\Documents\\NeuralNetwork\\Dataset";
 
             string csvPath = Path.Combine(datasetPath, "facial_expressions.csv");
             if (!File.Exists(csvPath))
@@ -180,10 +180,17 @@ namespace FacialExpressionNN
             }
         }
 
+
+        private void ExpressionIdentification()
+        {
+            // this is the testing data process
+        }
+
         private void openFileDialog1_FileOk(object sender, CancelEventArgs e)
         {
             Loaded = new Bitmap(openFileDialog1.FileName);
             pictureBox1.Image = Loaded;
+
         }
 
         private void RandomSearchButton_Click(object sender, EventArgs e)
@@ -196,9 +203,9 @@ namespace FacialExpressionNN
             Random Rand = new Random();
 
             double BestError = double.MaxValue;
-            double BestLR = 0;
-            int BestEpochs = 0;
-            int BestHidden = 0;
+            double OptimalLearningRate = 0;
+            int OptimalNumberOfEpochs = 0;
+            int OptimalNumberOfHiddenLayers = 0;
 
             richTextBox1.Clear();
             richTextBox1.AppendText("Starting Random Search (5 trials)...\n\n");
@@ -240,6 +247,8 @@ namespace FacialExpressionNN
                         }
                         NeuralNet.learn(); // Train the network with the current input and desired output
                     }
+
+                    NeuralNet.run(); // Run the network after training on all images for this epoch
                 }
 
                 // Simulating an error calculation for demonstration purposes 
@@ -255,21 +264,21 @@ namespace FacialExpressionNN
                 if (FinalTrialError < BestError)
                 {
                     BestError = FinalTrialError;
-                    BestLR = CurrentLR;
-                    BestEpochs = CurrentEpochs;
-                    BestHidden = CurrentHidden;
+                    OptimalLearningRate = CurrentLR;
+                    OptimalNumberOfEpochs = CurrentEpochs;
+                    OptimalNumberOfHiddenLayers = CurrentHidden;
                 }
             }
 
             // display the overall winner in the richtextbox
             richTextBox1.AppendText("\n========================================\n");
-            richTextBox1.AppendText($"BEST FOUND -> LR: {BestLR}, Epochs: {BestEpochs}, Hidden: {BestHidden} | Min Error: {BestError:F4}\n");
+            richTextBox1.AppendText($"BEST FOUND -> LR: {OptimalLearningRate}, Epochs: {OptimalNumberOfEpochs}, Hidden: {OptimalNumberOfHiddenLayers} | Min Error: {BestError:F4}\n");
             richTextBox1.AppendText("========================================\n");
 
             // output the best values to your corresponding UI labels
-            LearningRateLabel.Text = $"Best LR: {BestLR}";
-            EpochsLabel.Text = $"Best Epochs: {BestEpochs}";
-            HiddenNeuronsLabel.Text = $"Best Hidden: {BestHidden}";
+            LearningRateLabel.Text = $"Best LR: {OptimalLearningRate}";
+            EpochsLabel.Text = $"Best Epochs: {OptimalNumberOfEpochs}";
+            HiddenNeuronsLabel.Text = $"Best Hidden: {OptimalNumberOfHiddenLayers}";
         }
 
         private double CalculateError()
@@ -333,7 +342,41 @@ namespace FacialExpressionNN
 
         private void TrainButton_Click(object sender, EventArgs e)
         {
-            
+            // this is the training data process
+            richTextBox1.AppendText("\n---------------------------------\n");
+            richTextBox1.AppendText("\nTraining the neural network...\n");
+
+            NeuralNet = new NeuralNet(2304, OptimalNumberOfHiddenLayers, 7);
+            NeuralNet.setLearningRate(OptimalLearningRate);
+
+            // loop through the optimal number of epochs
+            for(int epoch = 0; epoch < OptimalNumberOfEpochs; epoch++)
+            {
+                // loop through all images in the training dataset
+                for (int idx = 0; idx < TrainingImages.Length; idx++)
+                {
+                    Bitmap image = TrainingImages[idx];
+                    for(int x = 0; x < image.Width; x++)
+                    {
+                        for(int y = 0; y < image.Height; y++)
+                        {
+                            Color pixel = image.GetPixel(x,y);
+                            int grey = (pixel.R + pixel.G + pixel.B) / 3;
+                            NeuralNet.setInputs(x * image.Height + y, grey);
+                        }
+                    }
+                    for (int i = 0; i < 7; i++)
+                    {
+                        NeuralNet.setDesiredOutput(i, (TrainingImageEmotion[idx] == i) ? 1.0 : 0.0); // One-hot encoding for desired output
+                    }
+                    NeuralNet.learn(); // Train the network with the current input and desired output
+                }
+
+                NeuralNet.run(); // Run the network after training on all images for this epoch
+            }
+
+            richTextBox1.AppendText("\nTraining completed successfully.\n");
+
         }
 
         private void LoadImageButton_Click(object sender, EventArgs e)
