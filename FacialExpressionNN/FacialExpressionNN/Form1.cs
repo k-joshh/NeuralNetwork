@@ -359,6 +359,58 @@ namespace FacialExpressionNN
             return (double)incorrectCount / TestingImages.Length;
         }
 
+        private double CalculateAccuracyFromArrays(Bitmap[] images, int[] emotionLabels)
+        {
+            if (images == null || images.Length == 0) return 0.0;
+
+            int numCorrect = 0;
+            int numTotal = images.Length;
+
+            for (int i = 0; i < numTotal; i++)
+            {
+                Bitmap img = images[i];
+                int trueLabel = emotionLabels[i];
+
+                int pixelIndex = 0;
+                for (int x = 0; x < img.Width; x++)
+                {
+                    for (int y = 0; y < img.Height; y++)
+                    {
+                        Color pixel = img.GetPixel(x, y);
+                        double gray = (pixel.R + pixel.G  + pixel.B) /3;
+                        
+                        NeuralNet.setInputs(pixelIndex, gray);
+                        pixelIndex++;
+                    }
+                }
+
+                // 2. Run the network forward pass to calculate activations
+                sharedNeuralNet.run();
+
+                // 3. Find the predicted class using ArgMax across your 7 output neurons
+                int predictedClass = 0;
+                double maxActivation = -1.0;
+
+                for (int o = 0; o < 7; o++)
+                {
+                    double activation = sharedNeuralNet.getOuputData(o);
+                    if (activation > maxActivation)
+                    {
+                        maxActivation = activation;
+                        predictedClass = o;
+                    }
+                }
+
+                // 4. Compare prediction to true label
+                if (predictedClass == trueLabel)
+                {
+                    numCorrect++;
+                }
+            }
+
+            return (double)numCorrect / numTotal;
+        }
+
         private void TrainButton_Click(object sender, EventArgs e)
         {
             // this is the training data process
@@ -393,6 +445,16 @@ namespace FacialExpressionNN
             }
 
             richTextBox1.AppendText("\nTraining completed successfully.\n");
+
+            // 3. CALCULATE ACCURACIES DIRECTLY AFTER TRAINING
+            double trainAcc = CalculateAccuracyFromArrays(TrainingImages, TrainingImageEmotion);
+            double testAcc  = CalculateAccuracyFromArrays(TestingImages, TestingImageEmotion);
+
+            // 4. Display results in your rich text box
+            richTextBox1.AppendText("---------------------------------------------\n");
+            richTextBox1.AppendText($"Training Accuracy: {trainAcc * 100.0:F2}%\n");
+            richTextBox1.AppendText($"Testing Set Accuracy (80/20): {testAcc * 100.0:F2}%\n");
+            richTextBox1.AppendText("---------------------------------------------\n");
 
         }
 
