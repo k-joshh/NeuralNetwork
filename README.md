@@ -1,10 +1,33 @@
-Description of Project:
-This project aims to train a neural network model to identify the facial expressions of a set of images.
+# Facial Expression Recognition Model
 
-Description of Data:
-This project uses the dataset titled FER-2013 uploaded by Manas Sambare at keggle.com. The goal of the data was to learn facial experssion from the given images. The images were all flatted down to uniform greyscale, scaled down to 48x48 dimensions, and edit in a way that the face is centered or occupies the same space within each image. The smaller uniform and smaller dimensions allow for faster processing and predictability that the program can comfortably analyze and master. Each image is stored within 7 folders under the name of different expressions depending on what facial expression the subject of the image was expressing (angry, disgust, fear, happy, sad, netral, suprise).
+## Description of Project
+This project aims to build and train a neural network model to identify and classify human facial expressions from image data.
 
-Initially, the original dataset consisted of 28,709 images to be used for training a model while 3,589 were images to test it. My partner and I elected to use a subset of images from the training set as the main datset that will be used in this project, because of the rudimentary logic that we will be implementing in visual studio it would lead to significant computational constraints to process 30,000+ images. Using a python source code named secret.py to randomly select an image, we created a dataset called facial_expressions having 30 randomly selected image per emotion that will then be preprocessed in our code logic proper.
+---
 
-Orginal dataset: https://www.kaggle.com/datasets/msambare/fer2013
-Project dataset: Dataset\facial_expressions.csv
+## Description of Data
+This project utilizes the **FER-2013** dataset, originally uploaded by Manas Sambare on [Kaggle](https://www.kaggle.com/datasets/msambare/fer2013). 
+
+### Image Preprocessing & Standardization
+* **Resolution & Color:** Images are flattened into a uniform grayscale format and scaled down to $48 \times 48$ pixel dimensions.
+* **Alignment:** Faces are centered and normalized to occupy a consistent spatial layout within each frame.
+* **Performance:** These reduced, uniform dimensions minimize computational overhead, enabling faster processing and stable feature extraction.
+* **Directory Structure:** Images are organized into 7 folders corresponding to distinct facial expressions: `angry`, `disgust`, `fear`, `happy`, `sad`, `neutral`, and `surprise`.
+
+### Subsampling Strategy
+The original FER-2013 dataset contains **28,709 training images** and **3,589 test images**. 
+
+Due to computational constraints associated with our custom logic implemented in Visual Studio, processing 30,000+ images directly was unfeasible. To address this:
+* We utilized a Python script (`secret.py`) to randomly sample **30 images per emotion** from the training set.
+* This generated a refined working dataset named `facial_expressions` for initial development and preprocessing.
+* **Project Dataset Path:** `Dataset\facial_expressions.csv`
+
+---
+
+## Model Validation
+Following model training on our custom subset, final validation will be conducted using the original dataset's test partition. Evaluating the model against unseen images provides a reliable measure of its generalization performance and effectiveness.
+
+---
+
+## References & Resources
+* **Original Dataset Source:** [Kaggle - FER-2013](https://www.kaggle.com/datasets/msambare/fer2013)
