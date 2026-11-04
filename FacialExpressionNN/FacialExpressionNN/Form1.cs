@@ -201,12 +201,6 @@ namespace FacialExpressionNN
             }
         }
 
-
-        private void ExpressionIdentification()
-        {
-            // this is the testing data process
-        }
-
         private void openFileDialog1_FileOk(object sender, CancelEventArgs e)
         {
             Loaded = new Bitmap(openFileDialog1.FileName);
@@ -244,7 +238,7 @@ namespace FacialExpressionNN
         private void RandomSearchButton_Click(object sender, EventArgs e)
         {
             // ranges for random selection
-            double[] LRChoices = { 0.001, 0.005, 0.01, 0.05, 0.1, 0.2 };
+            double[] LRChoices = { 0.001, 0.005, 0.01, 0.05, 0.1};
             int[] EpochChoices = { 10, 25, 50, 100 };
             int[] HiddenChoices = { 16, 32, 64, 128 };
 
@@ -296,7 +290,7 @@ namespace FacialExpressionNN
                     }
                 }
 
-                // Simulating an error calculation for demonstration purposes 
+                // simulating an error calculation for demonstration purposes 
                 FinalTrialError = CalculateError();
 
                 // log current trial results to the richtextbox
@@ -328,21 +322,21 @@ namespace FacialExpressionNN
 
         private double CalculateError()
         {
-            // using ArgMax method to calculate error
+            // using ArgMax method to calculate error by using test set
             if (TestingImages == null || TestingImages.Length == 0)
             {
-                return 1.0; // Return maximum error if test set is empty
+                return 1.0; // return maximum error if test set is empty
             }
 
             int incorrectCount = 0;
 
-            // Loop through every image in the testing set
+            // loop through every image in the testing set
             for (int i = 0; i < TestingImages.Length; i++)
             {
                 Bitmap img = TestingImages[i];
                 int trueLabel = TestingImageEmotion[i];
 
-                // 1. Flatten and load the 48x48 image pixels into the neural net inputs (2,304 inputs)
+                // load the 48x48 image pixels into the neural net inputs (2,304 inputs)
                 int pixelIndex = 0;
                 for (int x = 0; x < img.Width; x++)
                 {
@@ -359,13 +353,13 @@ namespace FacialExpressionNN
                 // run the neural network to get the output activations
                 NeuralNet.run();
 
-                // 2. Use ArgMax across the 7 output neurons to find the network's prediction
+                // use ArgMax across the 7 output neurons to find the network's prediction
                 int predictedClass = 0;
                 double maxActivation = -1.0;
 
                 for (int o = 0; o < 7; o++)
                 {
-                    // Retrieves the activation of the o-th output neuron
+                    // retrieves the activation of the o-th output neuron
                     double activation = NeuralNet.getOuputData(o);
                     if (activation > maxActivation)
                     {
@@ -374,14 +368,14 @@ namespace FacialExpressionNN
                     }
                 }
 
-                // 3. Compare prediction to the actual emotion label
+                // compare prediction to the actual emotion label
                 if (predictedClass != trueLabel)
                 {
                     incorrectCount++;
                 }
             }
 
-            // Return the final error rate (e.g., 0.15 means 15% error / 85% accuracy)
+            // return the final error rate (ex. 0.15 means 15% error / 85% accuracy)
             return (double)incorrectCount / TestingImages.Length;
         }
 
@@ -409,10 +403,8 @@ namespace FacialExpressionNN
                     }
                 }
 
-                // 2. Run the network forward pass to calculate activations
                 NeuralNet.run();
 
-                // 3. Find the predicted class using ArgMax across your 7 output neurons
                 int predictedClass = 0;
                 double maxActivation = -1.0;
 
@@ -426,7 +418,6 @@ namespace FacialExpressionNN
                     }
                 }
 
-                // 4. Compare prediction to true label
                 if (predictedClass == trueLabel)
                 {
                     numCorrect++;
@@ -447,15 +438,13 @@ namespace FacialExpressionNN
 
             richTextBox1.AppendText("Starting training\n");
 
-            // Loop through your total epochs (e.g., bestEpochs found by random search)
+            // loop through your total epochs (e.g., bestEpochs found by random search)
             for (int epoch = 1; epoch <= int.Parse(EpochsTextBox.Text); epoch++)
             {
-                // 1. Train on every image in your training set for the current epoch
                 for (int idx = 0; idx < TrainingImages.Length; idx++)
                 {
                     Bitmap image = TrainingImages[idx];
                     
-                    // Flatten and load pixel inputs
                     int pixelIndex = 0;
                     for (int x = 0; x < image.Width; x++)
                     {
@@ -468,38 +457,30 @@ namespace FacialExpressionNN
                         }
                     }
 
-                    // Set one-hot targets for the 7 emotion classes
                     for (int i = 0; i < 7; i++)
                     {
                         NeuralNet.setDesiredOutput(i, (TrainingImageEmotion[idx] == i) ? 1.0 : 0.0);
                     }
 
-                    // Execute learning step (forward pass + backpropagation)
                     NeuralNet.learn();
                 }
 
-                // 2. Print progress every 100 epochs
                 if (epoch % 100 == 0)
                 {
-                    // Optional: Calculate current training accuracy or error to display
                     double currentAcc = CalculateAccuracyFromArrays(TrainingImages, TrainingImageEmotion);
-                    double estimatedError = 1.0 - currentAcc; // Or compute Mean Squared Error if preferred
+                    double estimatedError = 1.0 - currentAcc;
 
-                    // Format to match your desired style
                     richTextBox1.AppendText($"epoch = {epoch,-4}    error = {estimatedError:F4}\n");
                     
-                    // Ensures the UI doesn't freeze while training runs
                     Application.DoEvents(); 
                 }
             }
 
             richTextBox1.AppendText("Done\n");
 
-            // 3. CALCULATE ACCURACIES DIRECTLY AFTER TRAINING
             double trainAcc = CalculateAccuracyFromArrays(TrainingImages, TrainingImageEmotion);
             double testAcc  = CalculateAccuracyFromArrays(TestingImages, TestingImageEmotion);
 
-            // 4. Display results in your rich text box
             richTextBox1.AppendText("---------------------------------------------\n");
             richTextBox1.AppendText($"Training Accuracy: {trainAcc * 100.0:F2}%\n");
             richTextBox1.AppendText($"Testing Set Accuracy (80/20): {testAcc * 100.0:F2}%\n");
