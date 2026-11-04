@@ -35,7 +35,7 @@ namespace FacialExpressionNN
         private void LoadDatasetFromCsv()
         {
             // When running from Visual Studio (bin\Debug), Dataset is 3 levels up
-            string datasetPath = "C:\\Users\\Rheyvene\\Documents\\NeuralNetwork\\Dataset";
+            string datasetPath = GetDatasetPath();
 
             string csvPath = Path.Combine(datasetPath, "facial_expressions.csv");
             if (!File.Exists(csvPath))
@@ -78,6 +78,27 @@ namespace FacialExpressionNN
 
                 ImageEmotion[i - 1] = GetEmotionIndex(emotion);
             }
+        }
+
+        private string GetDatasetPath()
+        {
+            // start from the folder where the executable is running
+            DirectoryInfo currentDir = new DirectoryInfo(AppDomain.CurrentDomain.BaseDirectory);
+
+            // walk up the directory tree until we find the root repository folder containing
+            while (currentDir != null)
+            {
+                string candidatePath = Path.Combine(currentDir.FullName, "Dataset");
+
+                if (Directory.Exists(candidatePath))
+                {
+                    return candidatePath;
+                }
+
+                currentDir = currentDir.Parent;
+            }
+
+            throw new DirectoryNotFoundException("Could not find the 'dataset' folder relative to the solution directory.");
         }
 
         private int GetEmotionIndex(string emotion)
@@ -247,8 +268,6 @@ namespace FacialExpressionNN
                         }
                         NeuralNet.learn(); // Train the network with the current input and desired output
                     }
-
-                    NeuralNet.run(); // Run the network after training on all images for this epoch
                 }
 
                 // Simulating an error calculation for demonstration purposes 
@@ -276,9 +295,9 @@ namespace FacialExpressionNN
             richTextBox1.AppendText("========================================\n");
 
             // output the best values to your corresponding UI labels
-            LearningRateLabel.Text = $"Best LR: {OptimalLearningRate}";
-            EpochsLabel.Text = $"Best Epochs: {OptimalNumberOfEpochs}";
-            HiddenNeuronsLabel.Text = $"Best Hidden: {OptimalNumberOfHiddenLayers}";
+            LearningRateLabel.Text = $"{OptimalLearningRate}";
+            EpochsLabel.Text = $"{OptimalNumberOfEpochs}";
+            HiddenNeuronsLabel.Text = $"{OptimalNumberOfHiddenLayers}";
         }
 
         private double CalculateError()
@@ -311,8 +330,8 @@ namespace FacialExpressionNN
                     }
                 }
 
-                // Note: If your NeuralNet class requires an explicit forward pass method 
-                // after setting inputs, call it here (e.g., NeuralNet.RunForward();)
+                // run the neural network to get the output activations
+                NeuralNet.run();
 
                 // 2. Use ArgMax across the 7 output neurons to find the network's prediction
                 int predictedClass = 0;
@@ -371,8 +390,6 @@ namespace FacialExpressionNN
                     }
                     NeuralNet.learn(); // Train the network with the current input and desired output
                 }
-
-                NeuralNet.run(); // Run the network after training on all images for this epoch
             }
 
             richTextBox1.AppendText("\nTraining completed successfully.\n");
